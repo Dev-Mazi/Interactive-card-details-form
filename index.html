@@ -49,18 +49,20 @@
           </div>
 
           <div class="card-number-text-box">
-            <p class="card-number-text">0000 0000 0000 0000</p>
+            <p class="card-number-text" id="cc-number-display">
+              0000 0000 0000 0000
+            </p>
           </div>
 
           <div class="name-date-box">
-            <p class="name-text">Felicia Liare</p>
-            <p class="date-text">00/00</p>
+            <p class="name-text" id="cc-name-display">Felicia Liare</p>
+            <p class="date-text" id="cc-date-diplay">00/00</p>
           </div>
         </div>
         <div class="card-back-box">
           <img src="images/bg-card-back.png" alt="" class="card-back" />
           <div class="cvv-number-text-box">
-            <p class="cvv-number-text">123</p>
+            <p class="cvv-number-text" id="cc-cvc-display">000</p>
           </div>
         </div>
       </div>
@@ -76,18 +78,20 @@
           </div>
 
           <div class="card-number-text-box">
-            <p class="card-number-text">1234 5678 9123 0000</p>
+            <p class="card-number-text" id="cc-number-display">
+              0000 0000 0000 0000
+            </p>
           </div>
 
           <div class="name-date-box">
-            <p class="name-text">Felicia Liare</p>
-            <p class="date-text">09/00</p>
+            <p class="name-text" id="cc-name-display">Felicia Liare</p>
+            <p class="date-text" id="cc-date-diplay">00/00</p>
           </div>
         </div>
         <div class="card-back-box">
           <img src="images/bg-card-back.png" alt="" class="card-back" />
           <div class="cvv-number-text-box">
-            <p class="cvv-number-text">123</p>
+            <p class="cvv-number-text" id="cc-cvc-display">000</p>
           </div>
         </div>
       </div>
@@ -126,7 +130,7 @@
               <div class="form-group" id="expiration-date">
                 <label>Exp. Date (MM/YY)</label>
                 <div class="month-year-box">
-                  <div class="month-box">
+                  <div class="month-box form-group">
                     <input
                       style="display: inline-block"
                       type="num"
@@ -137,7 +141,7 @@
                     <div class="error"></div>
                   </div>
 
-                  <div class="year-box">
+                  <div class="year-box form-group">
                     <input
                       style="display: inline-block"
                       type="num"

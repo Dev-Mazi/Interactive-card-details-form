@@ -117,8 +117,16 @@ img {
   display: flex;
   gap: 2rem;
 }
+/* JS  */
 
-.error {
+.form-group.success input {
+  border: 2px solid hsl(278, 94%, 30%);
+}
+.form-group.error input {
+  border: 2px solid hsl(0, 100%, 66%);
+}
+
+.form-group .error {
   color: hsl(0, 100%, 66%);
   margin-left: 2rem;
   font-size: 1.2rem;

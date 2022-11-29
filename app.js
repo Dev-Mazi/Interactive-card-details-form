@@ -37,6 +37,7 @@
 //   }
 // };
 
+// SELECTING INPUT ELEMENT FROM FORM
 const form = document.getElementById('form');
 const cardname = document.getElementById('owner');
 const cardnumber = document.getElementById('cardNumber');
@@ -44,11 +45,72 @@ const monthInput = document.getElementById('month-input-field');
 const yearInput = document.getElementById('year-input-field');
 const cvvInput = document.getElementById('cvv');
 const confirmBtn = document.getElementById('confirm-purchase');
+const errorMsg = document.querySelector('.error');
 
-form.addEventListener('submit', function (e) {
+// SELECTING CARD VISIUAL ELEMENTS
+
+const ccNumberDisplay = document.getElementById('cc-number-display');
+const ccNameDisplay = document.getElementById('cc-name-display');
+const ccDateDisplay = document.getElementById('cc-date-display');
+const ccCvcDisplay = document.getElementById('cc-cvc-display');
+
+// This excutes the function  at the click of the button
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
   validator();
 });
 
+// Declaring a input succes function
+
+const statusError = function (element, message) {
+  const formGroup = element.parentElement;
+  const errorDisplay = formGroup.querySelector('.error');
+
+  errorDisplay.innerText = message;
+  formGroup.classList.add('error');
+  formGroup.classList.remove('success');
+};
+
+const statusSuccess = function (element) {
+  const formGroup = element.parentElement;
+  const errorDisplay = formGroup.querySelector('.error');
+
+  errorDisplay.innerText = '';
+  formGroup.classList.add('success');
+  formGroup.classList.remove('error');
+};
+
 // Validating the input elements
 
-const validator= 
+const validator = function () {
+  // Selecting the input elements and removing whitspace by using the .value.trim()
+  const cardnameValue = cardname.value.trim();
+  const cardNumberValue = cardnumber.value.trim();
+  // const monthInputValue = monthInput.value.trim();
+  // const yearInputValue = yearInput.value.trim();
+  const cvvInputValue = cvvInput.value.trim();
+
+  if (cardnameValue === '') {
+    statusError(cardname, 'Cant be empty');
+  } else {
+    statusSuccess(cardname);
+  }
+
+  if (cardNumberValue === '') {
+    statusError(cardnumber, 'Cant be empty');
+  } else {
+    statusSuccess(cardnumber);
+  }
+  if (cvvInputValue === '') {
+    statusError(cvvInput, 'Cant be empty');
+  } else {
+    statusSuccess(cvvInput);
+  }
+
+  // if (cardnameValue === String) {
+  //   statusSuccess(cardname);
+  // } else {
+  //   statusError(cardname, 'Wrong format');
+  // }
+};
