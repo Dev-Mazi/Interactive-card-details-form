@@ -49,12 +49,12 @@
           </div>
 
           <div class="card-number-text-box">
-            <p class="card-number-text">1234 5678 9123 0000</p>
+            <p class="card-number-text">0000 0000 0000 0000</p>
           </div>
 
           <div class="name-date-box">
             <p class="name-text">Felicia Liare</p>
-            <p class="date-text">09/00</p>
+            <p class="date-text">00/00</p>
           </div>
         </div>
         <div class="card-back-box">
@@ -94,14 +94,14 @@
 
       <div class="payment-box">
         <div class="payment">
-          <form>
+          <form id="form">
             <!-- CARDHOLDER NAME -->
 
             <div class="form-group owner">
               <label for="owner">Cardholder Name</label>
               <input
                 type="text"
-                class="form-control"
+                class="card-name"
                 id="owner"
                 placeholder="Jane Appleseed"
               />
@@ -125,20 +125,31 @@
             <div class="expiry-cvv-box">
               <div class="form-group" id="expiration-date">
                 <label>Exp. Date (MM/YY)</label>
-                <input
-                  type="num"
-                  maxlength="2"
-                  placeholder="MM"
-                  class="month-input-field"
-                />
-                <input
-                  type="num"
-                  maxlength="2"
-                  placeholder="YY"
-                  class="year-input-field"
-                />
+                <div class="month-year-box">
+                  <div class="month-box">
+                    <input
+                      style="display: inline-block"
+                      type="num"
+                      maxlength="2"
+                      placeholder="MM"
+                      class="month-input-field"
+                    />
+                    <div class="error"></div>
+                  </div>
+
+                  <div class="year-box">
+                    <input
+                      style="display: inline-block"
+                      type="num"
+                      maxlength="2"
+                      placeholder="YY"
+                      class="year-input-field"
+                    />
+                    <div class="error"></div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group CVV">
+              <div class="form-group CVV" style="display: inline-block">
                 <label for="cvv">CVV</label>
                 <input
                   type="num"
@@ -147,7 +158,6 @@
                   maxlength="3"
                   placeholder=" 123 "
                 />
-
                 <div class="error"></div>
               </div>
             </div>
@@ -178,5 +188,7 @@
         >Frontend Mentor</a
       >. Coded by <a href="#">Your Name Here</a>.
     </div>
+
+    <script src="app.js"></script>
   </body>
 </html>

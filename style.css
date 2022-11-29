@@ -12,7 +12,7 @@ html {
 
 body {
   font-weight: 500;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.8rem;
   padding: 3rem;
 
@@ -27,6 +27,7 @@ form {
 label {
   display: block;
   margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 input {
@@ -34,11 +35,27 @@ input {
   border: 2px solid #c4c4c4;
   border-radius: 0.5rem;
   width: 100%;
-  padding: 0.5rem 1rem;
-  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+
   font-size: inherit;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   font-family: inherit;
+  border: 2px solid transparent;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border: 2px solid hsl(278, 94%, 30%);
+}
+
+input::-webkit-input-placeholder {
+  color: hsl(279, 6%, 55%);
+}
+
+input:focus:invalid {
+  border: 2px solid hsl(0, 100%, 66%);
 }
 
 img {
@@ -55,7 +72,6 @@ img {
   height: 100vh;
   margin: 0 auto;
 
-  border: 2px solid #222;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -86,12 +102,28 @@ img {
 .month-input-field,
 .cvv-input-field,
 .year-input-field {
-  width: 10rem;
+  width: 9rem;
+}
+.year-input-field {
+  left: 9rem;
 }
 
 .expiry-cvv-box {
   display: flex;
   justify-content: space-between;
+}
+
+.month-year-box {
+  display: flex;
+  gap: 2rem;
+}
+
+.error {
+  color: hsl(0, 100%, 66%);
+  margin-left: 2rem;
+  font-size: 1.2rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
 }
 
 /* CARD STYLING */
@@ -183,6 +215,8 @@ img {
   transform: translateY(-0.2rem);
 }
 
+/* ERROR */
+
 /* ****************************** */
 /* MEDIA QUERY */
 /* ****************************** */
@@ -247,7 +281,7 @@ img {
   }
 
   .expiry-cvv-box {
-    gap: 4rem;
+    gap: 5rem;
     justify-content: unset;
   }
 
@@ -299,7 +333,7 @@ img {
 
   .cvv-number-text-box {
     position: absolute;
-    top: 8rem;
+    top: 7rem;
     right: 5rem;
   }
 
@@ -320,25 +354,382 @@ img {
   html {
     font-size: 50%;
   }
+  input {
+    padding: 1rem 2rem;
+  }
+
+  label {
+    margin-bottom: 0.7rem;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content;
+    position: relative;
+    gap: 4rem;
+  }
+
+  .bg-img-box {
+    display: none;
+  }
+
+  .bg-img-box-2 {
+    display: block;
+    position: relative;
+    height: 100%;
+    z-index: -1;
+  }
+
+  form {
+    padding: 0.5rem;
+  }
+
+  .payment {
+    width: 100%;
+    padding: 1.5rem;
+    height: 100%;
+  }
+
+  .month-input-field,
+  .cvv-input-field,
+  .year-input-field {
+    position: absolute;
+    width: 9rem;
+  }
+
+  .year-input-field {
+    left: 12rem;
+  }
+
+  .expiry-cvv-box {
+    gap: 5rem;
+    justify-content: unset;
+  }
+
+  .card-back-box {
+    position: absolute;
+    width: 80%;
+    top: 2rem;
+    left: 5rem;
+  }
+
+  .card-front-box {
+    left: 2rem;
+    top: 13rem;
+    z-index: 3;
+    width: 80%;
+  }
+
+  .card-logo {
+    width: 20%;
+    left: 2rem;
+  }
+
+  .card-number-text-box {
+    left: 2rem;
+    top: 8rem;
+  }
+
+  .card-number-text-box p {
+    font-size: 1.8rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .name-date-box {
+    display: flex;
+    gap: 6rem;
+
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+  }
+
+  .name-date-box p {
+    font-size: 1.4rem;
+    font-family: inherit;
+    letter-spacing: 0.1rem;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .cvv-number-text-box {
+    position: absolute;
+    top: 7rem;
+    right: 5rem;
+  }
+
+  .cvv-number-text-box p {
+    font-size: 1.8rem;
+    font-family: inherit;
+    letter-spacing: 0.2rem;
+    color: #fff;
+  }
+
+  .btn {
+    margin-top: 6rem;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and down)  */
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
   html {
     font-size: 56.25%;
   }
-}
+} */
 
-/* Large devices (laptops/desktops, 992px and down)  */
+/* Medium devices (/Tablets, 992px and down)  */
 @media only screen and (max-width: 992px) {
-  html {
-    font-size: 70%;
+  input {
+    padding: 2rem;
+    font-size: 2rem;
+  }
+
+  label {
+    margin-bottom: 0.7rem;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content;
+    position: relative;
+    gap: 9rem;
+  }
+
+  .bg-img-box {
+    display: none;
+  }
+
+  .bg-img-box-2 {
+    display: block;
+    position: relative;
+    height: 100%;
+    z-index: -1;
+  }
+
+  form {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .payment {
+    width: 100%;
+    padding: 1.5rem;
+    height: 100%;
+    position: relative;
+  }
+
+  .month-input-field,
+  .cvv-input-field,
+  .year-input-field {
+    position: absolute;
+    width: 13rem;
+  }
+
+  .year-input-field {
+    left: 16rem;
+  }
+
+  .expiry-cvv-box {
+    gap: 13rem;
+    justify-content: unset;
+  }
+
+  .card-back-box {
+    position: absolute;
+    width: 80%;
+    top: 4rem;
+    left: 5rem;
+  }
+
+  .card-front-box {
+    left: 2rem;
+    top: 21rem;
+    z-index: 3;
+    width: 80%;
+  }
+
+  .card-logo {
+    width: 20%;
+    left: 2rem;
+  }
+
+  .card-number-text-box {
+    left: 2rem;
+    top: 11rem;
+  }
+
+  .card-number-text-box p {
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .name-date-box {
+    display: flex;
+    gap: 13rem;
+
+    position: absolute;
+    bottom: 4rem;
+    left: 2rem;
+  }
+
+  .name-date-box p {
+    font-size: 1.6rem;
+    font-family: inherit;
+    letter-spacing: 0.4rem;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .cvv-number-text-box {
+    position: absolute;
+    top: 10rem;
+    right: 6rem;
+  }
+
+  .cvv-number-text-box p {
+    font-size: 2rem;
+    font-family: inherit;
+    letter-spacing: 0.2rem;
+    color: #fff;
+  }
+
+  .btn {
+    margin-top: 8rem;
+    padding: 2rem;
+  }
+  .btn:hover {
+    opacity: 0.8;
+    border: none;
+    padding: 2rem;
+    transform: translateY(-0.3rem);
   }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up)  */
-/* @media only screen and (min-width: 1200px) {
-  html {
-    font-size: 75%;
+/* Extra large devices (large laptops and desktops, 1280px and down)  */
+/* @media only screen and (max-width: 1280px) {
+  input {
+    padding: 2rem 3rem;
+    font-size: 3rem;
+  }
+
+  label {
+    margin-bottom: 0.7rem;
+  }
+
+  .container {
+    grid-template-columns: 1.5fr 3fr;
+
+    position: relative;
+    gap: 9rem;
+  }
+
+  .bg-img-box {
+    display: block;
+  }
+
+  .bg-img-box-2 {
+    display: none;
+  }
+
+  form {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .payment {
+    width: 50%;
+    padding: 1.5rem;
+    height: 100%;
+    position: relative;
+  }
+
+  .month-input-field,
+  .cvv-input-field,
+  .year-input-field {
+    position: absolute;
+    width: 18rem;
+  }
+
+  .year-input-field {
+    left: 23rem;
+  }
+
+  .expiry-cvv-box {
+    gap: 26rem;
+    justify-content: unset;
+  }
+
+  .card-back-box {
+    position: absolute;
+    width: 80%;
+    top: 4rem;
+    left: 5rem;
+  }
+
+  .card-front-box {
+    left: 2rem;
+    top: 21rem;
+    z-index: 3;
+    width: 80%;
+  }
+
+  .card-logo {
+    width: 20%;
+    left: 2rem;
+  }
+
+  .card-number-text-box {
+    left: 2rem;
+    bottom: 10rem;
+  }
+
+  .card-number-text-box p {
+    font-size: 3rem;
+    letter-spacing: 0.6rem;
+  }
+
+  .name-date-box {
+    display: flex;
+    gap: 20rem;
+
+    position: absolute;
+    bottom: 4rem;
+    left: 2rem;
+  }
+
+  .name-date-box p {
+    font-size: 2rem;
+    font-family: inherit;
+    letter-spacing: 0.4rem;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .cvv-number-text-box {
+    position: absolute;
+    top: 13rem;
+    right: 6rem;
+  }
+
+  .cvv-number-text-box p {
+    font-size: 2.5rem;
+    font-family: inherit;
+    letter-spacing: 0.2rem;
+    color: #fff;
+  }
+
+  .btn {
+    margin-top: 8rem;
+    padding: 2rem;
+  }
+  .btn:hover {
+    opacity: 0.8;
+    border: none;
+    padding: 2rem;
+    transform: translateY(-0.3rem);
   }
 } */
